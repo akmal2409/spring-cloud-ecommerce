@@ -1,0 +1,17 @@
+version: "3.4"
+
+services:
+  db:
+    image: mongo:3
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: talci
+
+volumes:
+  mongodata:
