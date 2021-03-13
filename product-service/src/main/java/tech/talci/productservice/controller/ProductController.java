@@ -3,6 +3,7 @@ package tech.talci.productservice.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import tech.talci.productservice.dto.ProductDto;
 import tech.talci.productservice.model.Product;
 import tech.talci.productservice.service.ProductService;
 
@@ -23,7 +24,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProduct(@RequestBody Product product) {
-        this.productService.createProduct(product);
+    public void createProduct(@RequestBody ProductDto productDto) {
+        this.productService.createProduct(productDto);
     }
 }
