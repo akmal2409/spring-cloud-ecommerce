@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="discovery-server" />
+        <module name="configuration-server" />
       </profile>
       <profile name="Annotation profile for Order Service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -24,6 +25,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="configuration-server" target="11" />
       <module name="discovery-server" target="11" />
       <module name="order-service" target="11" />
       <module name="product-service" target="11" />
@@ -31,6 +33,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="configuration-server" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="order-service" options="-parameters" />
       <module name="product-service" options="-parameters" />

@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: git
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/akmal2409/spring-cloud-ecommerce-config
+          clone-on-start: true
+          default-label: main
+
+
+server:
+  port: 8888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
