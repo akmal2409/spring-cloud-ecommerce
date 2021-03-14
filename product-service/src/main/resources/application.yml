@@ -10,6 +10,9 @@ server:
 
 #Discovery
 eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
     prefer-ip-address: true
