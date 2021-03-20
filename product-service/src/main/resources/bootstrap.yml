@@ -9,8 +9,11 @@ spring:
       port: 8200
       scheme: http
       authentication: TOKEN
-      token: s.sgqRFtr3eb5oCU6kbYHZWSbj
+      token: s.NWxQDFgOUEOySAGd98nZH3CE
       application-name: product-service
+  rabbitmq:
+    host: localhost
+    port: 5672
 
 #Discovery
 eureka:
@@ -20,6 +23,9 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
     prefer-ip-address: true
+
+
+# Rabit mq
 
 server:
   port: 0

@@ -12,6 +12,30 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: talci
+    networks:
+      backend:
+        aliases:
+          - "productdb"
+
+  rabbitmq:
+    image: library/rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq_data:/data
+    networks:
+      backend:
+        aliases:
+          - "rabbitmq"
+
+
 
 volumes:
   mongodata:
+  rabbitmq_data:
+
+networks:
+  backend:
+    driver: bridge
