@@ -29,12 +29,25 @@ services:
       backend:
         aliases:
           - "rabbitmq"
-
-
+  keycloak:
+    image: jboss/keycloak
+    command: ["-Djboss.http.port=8081"]
+    ports:
+      - "8081:8081"
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    volumes:
+      - keycloak_data:/var/lib/keycloak/data
+    networks:
+      backend:
+        aliases:
+          - "keycloak"
 
 volumes:
   mongodata:
   rabbitmq_data:
+  keycloak_data:
 
 networks:
   backend:

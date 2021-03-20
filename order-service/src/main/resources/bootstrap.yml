@@ -9,7 +9,7 @@ spring:
       port: 8200
       scheme: http
       authentication: TOKEN
-      token: s.NWxQDFgOUEOySAGd98nZH3CE
+      token: s.LPmEecKGglP8798wSdtSzKa9
       application-name: order-service
 
 server:
