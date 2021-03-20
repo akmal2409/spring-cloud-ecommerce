@@ -11,5 +11,6 @@ spring:
       authentication: TOKEN
       token: s.LPmEecKGglP8798wSdtSzKa9
       application-name: product-service
+
 server:
   port: 0
