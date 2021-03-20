@@ -1,8 +1,6 @@
 spring:
   application:
     name: order-service
-  datasource:
-    url: jdbc:mysql://localhost:3306/order-service?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
   cloud:
     config:
       uri: http://localhost:8888
@@ -13,18 +11,6 @@ spring:
       authentication: TOKEN
       token: s.NWxQDFgOUEOySAGd98nZH3CE
       application-name: order-service
-  rabbitmq:
-    host: localhost
-    port: 5672
-
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-  instance:
-    instance-id: ${spring.application.name}:${random.uuid}
-    prefer-ip-address: true
-
 
 server:
   port: 0
