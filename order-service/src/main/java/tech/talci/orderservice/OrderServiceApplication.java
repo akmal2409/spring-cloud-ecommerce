@@ -7,7 +7,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-@RefreshScope
 public class OrderServiceApplication {
 
     public static void main(String[] args) {
