@@ -9,7 +9,7 @@ spring:
       port: 8200
       scheme: http
       authentication: TOKEN
-      token: s.LPmEecKGglP8798wSdtSzKa9
+      token: ${VAULT_TOKEN}
       application-name: product-service
 
 

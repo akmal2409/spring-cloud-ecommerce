@@ -10,7 +10,7 @@ spring:
       authentication: TOKEN
       scheme: http
       application-name: api-gateway-service
-      token: s.LPmEecKGglP8798wSdtSzKa9
+      token: ${VAULT_TOKEN}
 
 
 
