@@ -18,14 +18,12 @@ public class OrderService {
     private final InventoryClient inventoryClient;
 
     public String placeOrder(OrderDto orderDto) {
-        boolean allProductsInStock = orderDto.getOrderLineItems()
-                .stream()
-                .allMatch(item -> this.inventoryClient.isInStock(item.getSkuCode()));
+        boolean allProductsInStock = this.inventoryClient.isInStock(orderDto.getOrderLineItemsList());
 
         if (allProductsInStock) {
             Order order = Order.builder()
                     .orderNumber(UUID.randomUUID().toString())
-                    .orderLineItems(orderDto.getOrderLineItems())
+                    .orderLineItems(orderDto.getOrderLineItemsList())
                     .build();
 
             this.orderRepository.save(order);
