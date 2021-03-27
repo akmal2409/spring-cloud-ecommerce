@@ -1,7 +1,6 @@
 package tech.talci.inventoryservice.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

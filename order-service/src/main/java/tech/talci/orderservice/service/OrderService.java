@@ -3,6 +3,7 @@ package tech.talci.orderservice.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import tech.talci.client.InventoryClient;
 import tech.talci.orderservice.dto.OrderDto;
 import tech.talci.orderservice.model.Order;
 import tech.talci.orderservice.repository.OrderRepository;
@@ -14,18 +15,27 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final InventoryClient inventoryClient;
 
     public String placeOrder(OrderDto orderDto) {
-        Order order = Order.builder()
-                .orderNumber(UUID.randomUUID().toString())
-                .orderLineItems(orderDto.getOrderLineItems())
-                .build();
+        boolean allProductsInStock = orderDto.getOrderLineItems()
+                .stream()
+                .allMatch(item -> this.inventoryClient.isInStock(item.getSkuCode()));
 
-        this.orderRepository.save(order);
+        if (allProductsInStock) {
+            Order order = Order.builder()
+                    .orderNumber(UUID.randomUUID().toString())
+                    .orderLineItems(orderDto.getOrderLineItems())
+                    .build();
 
-        log.debug("Order with order number: {} was created", order.getOrderNumber() );
+            this.orderRepository.save(order);
 
-        return String.format("Order with order number %s" +
-                " was successfully placed", order.getOrderNumber());
+            log.debug("Order with order number: {} was created", order.getOrderNumber() );
+
+            return String.format("Order with order number %s" +
+                    " was successfully placed", order.getOrderNumber());
+        } else {
+            return "Order failed. One of the products is not in stock. Please try again";
+        }
     }
 }
