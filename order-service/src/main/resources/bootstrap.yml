@@ -12,5 +12,6 @@ spring:
       token: ${VAULT_TOKEN}
       application-name: order-service
 
+
 server:
   port: 0

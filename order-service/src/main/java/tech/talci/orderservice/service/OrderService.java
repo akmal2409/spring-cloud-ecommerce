@@ -3,7 +3,7 @@ package tech.talci.orderservice.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import tech.talci.client.InventoryClient;
+import tech.talci.orderservice.client.InventoryClient;
 import tech.talci.orderservice.dto.OrderDto;
 import tech.talci.orderservice.model.Order;
 import tech.talci.orderservice.repository.OrderRepository;

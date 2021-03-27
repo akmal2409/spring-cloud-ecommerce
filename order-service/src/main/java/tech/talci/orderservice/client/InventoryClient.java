@@ -1,4 +1,4 @@
-package tech.talci.client;
+package tech.talci.orderservice.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
