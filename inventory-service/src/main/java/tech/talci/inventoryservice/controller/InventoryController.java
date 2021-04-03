@@ -19,7 +19,7 @@ public class InventoryController {
         return this.inventoryService.isInStock(skuCode);
     }
 
-    @GetMapping("/bulk-validation")
+    @PostMapping("/bulk-validation")
     public Boolean isInStock(@RequestBody List<OrderLineItems> orderLineItemsList) {
         return this.inventoryService.isInStock(orderLineItemsList);
     }

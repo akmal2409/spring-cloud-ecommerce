@@ -17,8 +17,6 @@ public class OrderController {
 
     @PostMapping
     public String placeOrder(@RequestBody OrderDto orderDto) {
-        this.orderService.placeOrder(orderDto);
-
-        return null;
+        return this.orderService.placeOrder(orderDto);
     }
 }

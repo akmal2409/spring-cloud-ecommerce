@@ -18,7 +18,12 @@ public class OrderService {
     private final InventoryClient inventoryClient;
 
     public String placeOrder(OrderDto orderDto) {
-        boolean allProductsInStock = this.inventoryClient.isInStock(orderDto.getOrderLineItemsList());
+        if (orderDto == null) {
+            throw new RuntimeException("Order is not present");
+        }
+        boolean allProductsInStock = orderDto.getOrderLineItemsList()
+                .stream()
+                .allMatch(item -> this.inventoryClient.isInStock(item.getSkuCode()));
 
         if (allProductsInStock) {
             Order order = Order.builder()
