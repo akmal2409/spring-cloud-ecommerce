@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JCircuitBreaker;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JCircuitBreakerFactory;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 import tech.talci.orderservice.client.InventoryClient;
 import tech.talci.orderservice.dto.OrderDto;
@@ -20,6 +21,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final InventoryClient inventoryClient;
     private final Resilience4JCircuitBreakerFactory circuitBreakerFactory;
+    private final StreamBridge streamBridge;
 
 
     public String placeOrder(OrderDto orderDto) {
@@ -45,6 +47,10 @@ public class OrderService {
                     .build();
 
             this.orderRepository.save(order);
+
+            log.info("Sending Order Details to Notification Service");
+            streamBridge.send("notificationEventSupplier-out-0", order.getId());
+
 
             log.debug("Order with order number: {} was created", order.getOrderNumber() );
 

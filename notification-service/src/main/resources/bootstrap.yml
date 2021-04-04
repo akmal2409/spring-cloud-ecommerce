@@ -1,15 +1,26 @@
 spring:
   application:
     name: notification-service
-#  cloud:
-#    config:
-#      uri: http://localhost:8888
+
+  cloud:
+    config:
+      uri: http://localhost:8888
+
+    stream:
+      function:
+        definition: notificationEventSupplier
+      bindings:
+        notificationEventSupplier-in-0:
+          destination: notification-events
+#          group: notification-service
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 
-eureka:
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${random.uuid}
-  client:
-    fetch-registry: true
-    register-with-eureka: true
+server:
+  port: 0
+
